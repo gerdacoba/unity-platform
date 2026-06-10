@@ -1,0 +1,5 @@
+# Site statique (HTML pur) : aucune étape de build.
+# On publie simplement le dossier racine, là où se trouve index.html.
+[build]
+  command = "echo 'Site statique — aucun build necessaire'"
+  publish = "."

@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Unity — Comment ça marche ?</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+:root{--cream:#FFFFFF;--cream-2:#F4F4F2;--ink:#1C1426;--ink-soft:#4A3D55;--coral:#FF4D2E;--marigold:#FFB400;--teal:#0E9E89;--indigo:#3B2C8E;--magenta:#E8407A;--sky:#1E86C9;--paper:#FFFFFF;--radius:22px;--maxw:1080px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque",sans-serif;line-height:1.06;letter-spacing:-.02em;font-weight:700}
+nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);background:rgba(255,255,255,.82);border-bottom:1px solid rgba(28,20,38,.08)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:70px;gap:18px}
+.logo{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque";font-weight:800;font-size:1.4rem}
+.logo .dot{width:30px;height:30px;border-radius:50% 50% 50% 4px;background:conic-gradient(from 45deg,var(--coral),var(--marigold),var(--teal),var(--magenta),var(--coral));transform:rotate(-8deg)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-weight:600;font-size:.92rem;color:var(--ink)}
+.nav-links a:hover{color:var(--coral)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang{display:flex;border:1.5px solid var(--ink);border-radius:50px;overflow:hidden;font-weight:700;font-size:.8rem}
+.lang button{border:0;background:transparent;color:var(--ink);padding:6px 12px;cursor:pointer;font:inherit}
+.lang button.on{background:var(--ink);color:#fff}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--coral);color:#fff;font-weight:700;padding:13px 26px;border-radius:50px;border:0;cursor:pointer;font:inherit;box-shadow:0 6px 0 #c1331b;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(2px);box-shadow:0 4px 0 #c1331b}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:1.5px solid var(--ink)}
+.nav-right .btn{padding:10px 18px;font-size:.9rem}
+.phead{padding:58px 0 26px}
+.flag{font-size:4rem;line-height:1}
+.eyebrow{display:inline-block;background:var(--ink);color:#fff;padding:6px 14px;border-radius:50px;font-weight:600;font-size:.8rem;margin-bottom:18px}
+.ptitle{font-size:clamp(2.1rem,5vw,3.4rem);margin:14px 0 12px;font-weight:800}
+.psub{color:var(--ink-soft);font-size:1.15rem;max-width:38em;font-weight:500}
+section{padding:30px 0}
+.sec-tag{font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin-bottom:18px}
+.sec-h{font-size:clamp(1.7rem,4vw,2.5rem);margin-bottom:24px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--paper);border:1.5px solid rgba(28,20,38,.1);border-radius:var(--radius);padding:24px}
+.card .k{font-family:"Bricolage Grotesque";font-weight:800;font-size:1.35rem;margin-bottom:6px}
+.card .v{color:var(--ink-soft);font-weight:500;font-size:.96rem}
+.prose{max-width:40em;color:var(--ink-soft);font-weight:500;font-size:1.08rem}
+.prose p{margin-bottom:16px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:10px}
+.step .dot{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:"Bricolage Grotesque";font-weight:800;color:#fff;font-size:1.2rem;margin-bottom:14px}
+.c-coral{background:var(--coral)}.c-mar{background:var(--marigold)}.c-teal{background:var(--teal)}.c-ind{background:var(--indigo)}
+.step h4{font-size:1.12rem;margin-bottom:6px}.step p{font-size:.94rem;color:var(--ink-soft);font-weight:500}
+.darkbox{background:var(--ink);color:#fff;border-radius:28px;padding:48px 32px}
+.darkbox h2{font-size:clamp(1.6rem,3.5vw,2.4rem);max-width:18em}
+.plist{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.pitem{display:flex;gap:12px;align-items:flex-start;color:rgba(255,255,255,.85);font-weight:500}
+.pitem .x{flex:none;width:26px;height:26px;border-radius:8px;background:rgba(255,77,46,.30);color:#ff9b85;display:grid;place-items:center;font-weight:800}
+.formwrap{background:var(--ink);color:#fff;border-radius:28px;padding:48px 32px;text-align:center}
+.formwrap h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+.formwrap p{color:rgba(255,255,255,.82);margin:14px auto 26px;max-width:30em;font-weight:500}
+.form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.form input{padding:14px 20px;border-radius:50px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font:inherit;min-width:260px;font-weight:500}
+.form input::placeholder{color:rgba(255,255,255,.5)}
+.note{font-size:.84rem;color:rgba(255,255,255,.6);margin-top:16px}
+footer{padding:38px 0 56px;border-top:1px solid rgba(28,20,38,.1);margin-top:24px}
+.copy{font-size:.84rem;color:var(--ink-soft)}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.chip{background:var(--cream-2);border:1.5px solid rgba(28,20,38,.12);border-radius:50px;padding:9px 18px;font-weight:600;display:flex;align-items:center;gap:8px}
+.chip .ping{width:9px;height:9px;border-radius:50%;background:var(--teal)}
+.chip.soon{opacity:.55}.chip.soon .ping{background:var(--ink-soft)}
+@media(max-width:860px){.nav-links{display:none}}
+@media(max-width:600px){.nav-login{display:none}.grid3,.steps{grid-template-columns:1fr}}
+</style></head><body><nav><div class="wrap nav-in"><a class="logo" href="index.html"><span class="dot"></span>Unity</a><div class="nav-links"><a href="index.html" data-i18n="nav_home"></a><a href="evenements.html" data-i18n="nav_events"></a><a href="comment-ca-marche.html" data-i18n="nav_how"></a><a href="vision.html" data-i18n="nav_visionp"></a></div><div class="nav-right"><div class="lang" id="lang"><button data-lang="fr" class="on">FR</button><button data-lang="en">EN</button></div><a class="btn ghost nav-login" href="https://app.heartbeat.chat/login/welcome-unity?redirectTo=%2Fwelcome-unity" target="_blank" rel="noopener" data-i18n="nav_login"></a><a class="btn nav-cta" href="https://app.heartbeat.chat/welcome-unity/invitation?code=J32DJ4" target="_blank" rel="noopener" data-i18n="nav_cta"></a></div></div></nav><header class="phead"><div class="wrap"><span class="eyebrow" data-i18n="eyebrow"></span><h1 class="ptitle" data-i18n="title"></h1><p class="psub" data-i18n="sub"></p></div></header><section><div class="wrap"><div class="darkbox"><h2 data-i18n="prob_h"></h2><div class="plist"><div class="pitem"><span class="x">!</span><span data-i18n="p1"></span></div><div class="pitem"><span class="x">!</span><span data-i18n="p2"></span></div><div class="pitem"><span class="x">!</span><span data-i18n="p3"></span></div><div class="pitem"><span class="x">!</span><span data-i18n="p4"></span></div></div></div></div></section><section><div class="wrap"><div class="sec-tag" data-i18n="steps_tag"></div><h2 class="sec-h" data-i18n="steps_h"></h2><div class="steps"><div class="step"><div class="dot c-coral">1</div><h4 data-i18n="s1h"></h4><p data-i18n="s1p"></p></div><div class="step"><div class="dot c-mar">2</div><h4 data-i18n="s2h"></h4><p data-i18n="s2p"></p></div><div class="step"><div class="dot c-teal">3</div><h4 data-i18n="s3h"></h4><p data-i18n="s3p"></p></div><div class="step"><div class="dot c-ind">4</div><h4 data-i18n="s4h"></h4><p data-i18n="s4p"></p></div></div><div class="chips"><span class="chip"><span class="ping"></span>Bruxelles</span><span class="chip"><span class="ping"></span>Louvain-la-Neuve</span><span class="chip"><span class="ping"></span>Paris</span><span class="chip soon"><span class="ping"></span><span data-i18n="city_soon"></span></span></div></div></section><section><div class="wrap"><div class="formwrap"><h2 data-i18n="cta_h"></h2><div style="margin-top:24px"><a class="btn" href="https://app.heartbeat.chat/welcome-unity/invitation?code=J32DJ4" target="_blank" rel="noopener" data-i18n="cta_btn"></a></div></div></div></section><footer><div class="wrap"><span class="copy">© 2026 Unity</span></div></footer><script>const D={fr:{nav_home:"Accueil", nav_events:"Événements", nav_how:"Comment ça marche ?", nav_visionp:"Vision", nav_login:"Se connecter", nav_cta:"Rejoindre", eyebrow:"Comment ça marche ?",title:"De l'arrivée à l'appartenance.",
+sub:"Arriver dans un nouveau pays ne devrait pas se faire seul·e. Unity t'accompagne, étape par étape.",
+prob_h:"L'intégration reste un parcours d'obstacles.",
+p1:"Démarches administratives floues et urgentes dès l'arrivée.",p2:"Aucun repère : logement, banque, santé, où commencer ?",
+p3:"Une solitude réelle, loin de sa famille et de sa culture.",p4:"Des communautés dispersées, des events introuvables.",
+steps_tag:"Le parcours",steps_h:"Ton intégration en 4 étapes.",
+s1h:"Inscris-toi",s1p:"Crée ton profil et dis-nous d'où tu viens et où tu arrives.",
+s2h:"Trouve ton buddy",s2p:"On te connecte à un parrain local et à ta communauté de ville.",
+s3h:"Explore les events",s3p:"Accède à l'agenda, aux groupes et au welcome pack.",
+s4h:"Construis ton chez-toi",s4p:"Tisse des liens, pratique des langues et trouve ta place.",
+city_soon:"Bientôt d'autres villes",cta_h:"Prêt·e à te lancer ?",cta_btn:"Rejoindre la plateforme"},en:{nav_home:"Home", nav_events:"Events", nav_how:"How it works", nav_visionp:"Vision", nav_login:"Log in", nav_cta:"Join", eyebrow:"How it works",title:"From arrival to belonging.",
+sub:"Moving to a new country shouldn't be done alone. Unity guides you, step by step.",
+prob_h:"Integration is still an obstacle course.",
+p1:"Confusing, urgent paperwork from the moment you land.",p2:"No bearings: housing, banking, health — where to start?",
+p3:"Real loneliness, far from family and culture.",p4:"Scattered communities and events you can't find.",
+steps_tag:"The journey",steps_h:"Your integration in 4 steps.",
+s1h:"Sign up",s1p:"Create your profile and tell us where you're from and where you land.",
+s2h:"Find your buddy",s2p:"We pair you with a local mentor and your city community.",
+s3h:"Explore events",s3p:"Access the agenda, the groups and your welcome pack.",
+s4h:"Build your home",s4p:"Make connections, practice languages and find your place.",
+city_soon:"More cities soon",cta_h:"Ready to get started?",cta_btn:"Join the platform"}};
+function langLinks(l){document.querySelectorAll('a[href$=".html"]').forEach(function(a){var b=a.getAttribute('href').split('?')[0];a.setAttribute('href',b+'?lang='+l);});}
+function setLang(l){var d=D[l];document.documentElement.lang=l;
+document.querySelectorAll('[data-i18n]').forEach(function(e){var k=e.getAttribute('data-i18n');if(d[k]!==undefined)e.textContent=d[k];});
+document.querySelectorAll('[data-i18n-html]').forEach(function(e){var k=e.getAttribute('data-i18n-html');if(d[k]!==undefined)e.innerHTML=d[k];});
+document.querySelectorAll('[data-i18n-ph]').forEach(function(e){var k=e.getAttribute('data-i18n-ph');if(d[k]!==undefined)e.setAttribute('placeholder',d[k]);});
+document.querySelectorAll('#lang button').forEach(function(b){b.classList.toggle('on',b.dataset.lang===l);});
+langLinks(l);
+try{var u=new URL(window.location.href);u.searchParams.set('lang',l);history.replaceState(null,'',u);}catch(e){}}
+document.querySelectorAll('#lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
+setLang(new URLSearchParams(window.location.search).get('lang')==='en'?'en':'fr');
+</script></body></html>
