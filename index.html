@@ -289,7 +289,7 @@
   /* hero social proof */
   .hero-social{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px;flex-wrap:wrap}
   .bubbles{display:flex}
-  .bub{width:34px;height:34px;border-radius:50%;border:2.5px solid var(--cream);margin-left:-10px;box-shadow:0 2px 7px rgba(0,0,0,.16);object-fit:cover;object-position:center top}
+  .bub{width:34px;height:34px;border-radius:50%;border:2.5px solid var(--cream);margin-left:-10px;box-shadow:0 2px 7px rgba(0,0,0,.16);background-size:220%;background-position:center 15%;background-repeat:no-repeat}
   .bub:first-child{margin-left:0}
   .hero-launch-txt{font-weight:700;font-size:1.08rem;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
   .hero-launch-txt::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--teal)}
@@ -404,9 +404,9 @@
         </div>
         <div class="hero-social">
           <div class="bubbles">
-            <img class="bub" src="images/image-member1.png" alt="membre">
-            <img class="bub" src="images/image-member2.png" alt="membre">
-            <img class="bub" src="images/image-member3.png" alt="membre">
+            <div class="bub" style="background-image:url('images/image-member1.png')"></div>
+            <div class="bub" style="background-image:url('images/image-member2.png')"></div>
+            <div class="bub" style="background-image:url('images/image-member3.png')"></div>
           </div>
           <span class="hero-launch-txt" data-i18n="hero_launch"></span>
         </div>
